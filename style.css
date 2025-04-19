@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'TaipeiSansTCBeta-Regular';
+  src: url('./libraries/TaipeiSansTCBeta-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* General body styling */
+body {
+  margin: 0;
+  font-family: 'TaipeiSansTCBeta-Regular';
+  background-color: #170033;
+  color: #ffffff; /* Deep purple text color */
+}
+
+/* Ensure form elements inherit the custom font */
+select, input, textarea, button {
+  font-family: 'TaipeiSansTCBeta-Regular';
+  font-size: 14px;
+  color: #170033;
+}
+
+#profile-image {
+  width: 100vw; /* Set the image width to match the window width */
+  height: auto; /* Maintain the aspect ratio */
+  object-fit: contain; /* Ensure the image scales proportionally */
+  display: block; /* Ensure the image is displayed as a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+@keyframes rotateImage {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#hover-image {
+  position: absolute;
+  width: 100px; /* Image size */
+  height: 100px; /* Image size */
+  z-index: -1; /* Place behind buttons */
+  transform-origin: center; /* Rotate around its center */
+  animation: rotateImage 3s linear infinite; /* Continuous rotation */
+  display: none; /* Hide it by default */
+}
+
+button {
+  position: relative; /* Ensures the button moves within the context of the image */
+  z-index: 1; /* Keep buttons on top */
+}
+
+button {
+  background-color: #7D56AD; /* Purple background color */
+  color: #ffffff; /* White text color */
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RinkaReiRiu Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* General body styling */
+    body {
+      margin: 0;
+      font-family: 'TaipeiSansTCBeta-Regular'; /* Custom font */
+      /* Removed background-color from here */
+      color: #170033; /* Deep purple text color */
+    }
+
+    /* Header navigation */
+    header {
+      display: flex;
+      justify-content: flex-end; /* Position buttons on the right */
+      padding: 10px;
+      box-shadow: none; /* Remove shadow */
+      background-color: transparent; /* Remove white background */
+      position: fixed;
+      top: 0; /* Position at the top */
+      right: 0; /* Align with the right side */
+      z-index: 10;
+    }
+
+    /* Button styling */
+    button {
+      margin-left: 10px; /* Reduced spacing between buttons */
+      padding: 8px 12px; /* Compact button size */
+      border: none;
+      background-color: transparent; /* No button background */
+      color: #170033; /* Deep purple text color */
+      font-size: 14px; /* Compact font size */
+      font-weight: bold;
+      border-radius: 5px; /* Rounded corners (optional) */
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    button:hover {
+      color: #6A4796; /* Change text color on hover */
+    }
+
+    /* Main content */
+    #main-content {
+      padding: 60px 15px 15px; /* Adjust padding for the new button position */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 60px); /* Adjust height based on the header */
+    }
+
+    /* Project list */
+    #project-list {
+      display: none;
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      color: #170033; /* Deep purple text color */
+    }
+
+    .project-list-item {
+      cursor: pointer;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: #170033;
+    }
+
+    .project-list-item:hover {
+      background-color: #7D56AD;
+      color: #ffffff;
+    }
+
+    /* Info section */
+    #info {
+      display: none;
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      color: #170033;
+    }
+
+    /* Iframe styling */
+    iframe {
+      display: none;
+      width: 100%;
+      height: calc(100vh - 60px);
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <button id="profile-button">PROFILE</button>
+    <button id="project-button">PROJECT</button>
+    <button id="info-button">INFO</button>
+  </header>
+  <div id="main-content">
+    <img id="profile-image" src="profile_ps.jpg" alt="Profile Image">
+    <div id="info">
+      11302 Semester Coding Process by Rinka ReiRiu in TKUET.</br>
+      Design Note here: 
+      <a href="https://hackmd.io/@riu0206/11302coding_01mid" target="_blank">
+        Design Note.(https://hackmd.io/@riu0206/11302coding_01mid)</a></br>
+    </div>
+    <div id="project-list">
+      <h2>Select a Project:</h2>
+      <div class="project-list-item" data-url="https://rinkareiriu.github.io/11301coding_homework1_fin/">Motion Name</div>
+      <div class="project-list-item" data-url="https://rinkareiriu.github.io/11301coding_homework2_fin/">Studying Game</div>
+      <div class="project-list-item" data-url="https://rinkareiriu.github.io/11302coding_250221HW/">Motion Circle</div>
+      <div class="project-list-item" data-url="https://rinkareiriu.github.io/11302coding_250307HW/">Neon Light</div>
+      <div class="project-list-item" data-url="https://rinkareiriu.github.io/11302coding_250319HW/">Motion Text</div>
+      <div class="project-list-item" data-url="https://rinkareiriu.github.io/11302coding_250321HW/">Test</div>
+      <div class="project-list-item" data-url="https://rinkareiriu.github.io/11302coding_250328HW/">Line Waving</div>
+    </div>
+    <iframe id="website-display" src=""></iframe>
+  </div>
+  <img id="hover-image" src="illust01.jpg" alt="Rotating Hover Image">
+  <script>
+    const profileButton = document.getElementById('profile-button');
+    const projectButton = document.getElementById('project-button');
+    const infoButton = document.getElementById('info-button');
+    const mainContent = document.getElementById('main-content');
+    const infoSection = document.getElementById('info');
+    const projectList = document.getElementById('project-list');
+    const iframe = document.getElementById('website-display');
+    const profileImage = document.getElementById('profile-image');
+
+    // 預設顯示 INFO 區塊，隱藏其他區塊
+    window.onload = () => {
+      hideAllSections(); // 隱藏所有區塊
+      infoSection.style.display = 'block'; // 顯示 INFO 區塊
+    };
+
+    profileButton.addEventListener('click', () => {
+      hideAllSections();
+      profileImage.style.display = 'block'; // 顯示 PROFILE 圖片
+    });
+
+    projectButton.addEventListener('click', () => {
+      hideAllSections();
+      projectList.style.display = 'block'; // 顯示 PROJECT 區塊
+    });
+
+    infoButton.addEventListener('click', () => {
+      hideAllSections();
+      infoSection.style.display = 'block'; // 顯示 INFO 區塊
+    });
+
+    document.querySelectorAll('.project-list-item').forEach(item => {
+      item.addEventListener('click', () => {
+        hideAllSections();
+        iframe.src = item.getAttribute('data-url');
+        iframe.style.display = 'block'; // 顯示 iframe
+      });
+    });
+
+    function hideAllSections() {
+      infoSection.style.display = 'none'; // 隱藏 INFO 區塊
+      projectList.style.display = 'none'; // 隱藏 PROJECT 區塊
+      iframe.style.display = 'none'; // 隱藏 iframe
+      profileImage.style.display = 'none'; // 隱藏 PROFILE 圖片
+    }
+
+    const hoverImage = document.getElementById('hover-image');
+
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('mouseenter', (event) => {
+        const buttonRect = event.target.getBoundingClientRect(); // Get button position
+        const imageX = buttonRect.left + buttonRect.width / 2 - 50; // Center horizontally
+        const imageY = buttonRect.top + buttonRect.height / 2 - 50; // Center vertically
+        hoverImage.style.left = `${imageX}px`;
+        hoverImage.style.top = `${imageY}px`;
+        hoverImage.style.display = 'block'; // Show image
+      });
+
+      button.addEventListener('mouseleave', () => {
+        hoverImage.style.display = 'none'; // Hide image
+      });
+    });
+
+  </script>
+</body>
+</html>
